@@ -27,7 +27,7 @@ Ranked by stars. These are the ones worth reading the source of.
 | 2,303 | [browser-use/jev-ultrafast](https://github.com/browser-use/jev-ultrafast) | Browser agent with dynamic indexed action space. Zürich→London in 7.1s, $0.0039. |
 | 839 | [TheoLeeCJ/openjev](https://github.com/TheoLeeCJ/openjev) | Runs "something like Jev" on a 3090 by reading option logits from a 4B model. |
 | 527 | [jarrodwatts/jev-trader](https://github.com/jarrodwatts/jev-trader) | One trade decision per Monad block (~300ms), 81ms model latency. |
-| 492 | [tamaratran/fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) | Replaces Claude Code compaction summaries with Jev delete/keep decisions. |
+| 848 | [tamaratran/fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) | Replaces Claude Code compaction summaries with Jev delete/keep decisions. |
 | 409 | [Anil-matcha/awesome-jev-by-typesafe](https://github.com/Anil-matcha/awesome-jev-by-typesafe) | Evidence-backed use cases, patterns, prompts, starter code. |
 | 217 | [fhshaik/typesafe-mario](https://github.com/fhshaik/typesafe-mario) | Plays Super Mario Bros. from structured emulator state. |
 | 200 | [thruwire/foreman](https://github.com/thruwire/foreman) | Software factory foreman: Jev supervises Codex workers. |

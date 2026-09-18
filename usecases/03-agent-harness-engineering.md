@@ -82,7 +82,7 @@ questions={
 Every large tool result is judged before it enters the context window. Jev answers one yes/no question per block: *is this block needed for the current task?* Confident-no blocks are replaced with a stub that points at a recall mechanism.
 
 **Real implementations:**
-- [tamaratran/fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) (492★) replaces Claude Code's compaction summary with Jev decisions. It never rewrites anything - it only deletes tool calls and results Jev says are no longer needed, and user/assistant text stays verbatim.
+- [tamaratran/fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) (848★) replaces Claude Code's compaction summary with Jev decisions. It never rewrites anything - it only deletes tool calls and results Jev says are no longer needed, and user/assistant text stays verbatim.
 - [GhalebDweikat/winnow](https://github.com/GhalebDweikat/winnow) splits a result into ~25-line blocks and asks one Noul per block, keeping confident-yes and uncertain blocks verbatim and stubbing confident-no blocks with a recall key.
 - [compozy/yoshi](https://github.com/compozy/yoshi) is a context-pruning proxy for Claude Code and Codex.
 
