@@ -194,7 +194,7 @@ Three things to internalize:
 - [**realZachi/typesafe-adblock**](https://github.com/realZachi/typesafe-adblock) - a Chrome extension that asks Jev "is this DOM element an ad?" and pops it off the page.
 - [**piyush97/focus-tube**](https://github.com/piyush97/focus-tube) - a distraction-free YouTube learning feed.
 
-These are worth noting for the *shape*: a per-element binary judgment, run over many elements, cheap enough to fire on every DOM mutation. That is the same pattern as the [context sieve](03-agent-harness-engineering.md#2-context-sieve--keep-or-evict) applied to a web page.
+These are worth noting for the *shape*: a per-element binary judgment, run over many elements, cheap enough to fire on every DOM mutation. That is the same pattern as the [context sieve](03-agent-harness-engineering.md#2-context-sieve---keep-or-evict) applied to a web page.
 
 ### PS2 and other platforms
 
@@ -214,7 +214,7 @@ If the model cannot choose an impossible action, you have removed an entire fail
 
 ### Speculate on targets
 
-Ask for click, type, and select targets in the same call and read only the one that matches. Two or more decisions, one round trip. This is [Pattern 1](../docs/patterns.md#pattern-1--speculative-fan-out) applied to actions.
+Ask for click, type, and select targets in the same call and read only the one that matches. Two or more decisions, one round trip. This is [Pattern 1](../docs/patterns.md#pattern-1---speculative-fan-out) applied to actions.
 
 ### Add an explicit `WAIT` and an explicit `BLOCKED`
 
@@ -252,4 +252,4 @@ Track steps per task and cost per task, not just per decision. $0.0002 per step 
 
 - [08-real-time-and-games.md](08-real-time-and-games.md) - the same tight loop in a simulation
 - [02-llm-guardrails-and-verification.md](02-llm-guardrails-and-verification.md) - guarding the actions before they run
-- [../docs/patterns.md](../docs/patterns.md#pattern-1--speculative-fan-out) - the target-speculation pattern
+- [../docs/patterns.md](../docs/patterns.md#pattern-1---speculative-fan-out) - the target-speculation pattern

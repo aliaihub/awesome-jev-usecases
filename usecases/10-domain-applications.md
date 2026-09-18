@@ -94,7 +94,7 @@ The categories are organized by industry because the *design decisions* differ b
 | Match candidates to roles | Choice over roles | Enumerate roles |
 | Route to hiring managers | Choice + confidence | Gate uncertain cases |
 
-**Real implementation:** the [composite scoring](../docs/patterns.md#pattern-3--composite-scoring) example scores `python_depth`, `team_leadership`, and `system_design` separately and combines with explicit weights. That is the correct shape - and the weight visibility is what makes it defensible.
+**Real implementation:** the [composite scoring](../docs/patterns.md#pattern-3---composite-scoring) example scores `python_depth`, `team_leadership`, and `system_design` separately and combines with explicit weights. That is the correct shape - and the weight visibility is what makes it defensible.
 
 **Important:** this is a regulated domain in many jurisdictions. Scoring each competency separately against explicit, job-related criteria is not just better modeling, it is the more auditable approach. Avoid any question that asks for a holistic judgment of a person.
 

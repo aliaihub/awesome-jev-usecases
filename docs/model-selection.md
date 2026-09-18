@@ -77,7 +77,7 @@ incoming request
       └── human              -> handles the uncertain minority
 ```
 
-Jev classifies and routes cheaply. Code handles what it can. A frontier model takes the hard minority. This is [Pattern 4, the cascade](patterns.md#pattern-4--the-cascade).
+Jev classifies and routes cheaply. Code handles what it can. A frontier model takes the hard minority. This is [Pattern 4, the cascade](patterns.md#pattern-4---the-cascade).
 
 **The evidence is strongest when it is hybrid.** Hassan El Mghari's paper classifier used DeepSeek V4 Flash for summaries at $3.99 and Jev for classification at $0.08 - 1,018 papers, median 256 ms each. The generative model wrote; the decision model decided.
 

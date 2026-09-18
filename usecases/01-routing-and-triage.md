@@ -166,7 +166,7 @@ Source: [docs.typesafe.ai/concepts/how-to-build-with-system-one](https://docs.ty
 
 > Building production claim-ops agents for a UK consumer-claims firm (~35k cases): classify inbound lender/client email (info requests, appointment vs dissent, rejection reasons), then confidence-gate auto-draft vs human approval. Regex already misclassified legal intent once — need typed Choice/Noul decisions with calibrated confidence so high-confidence routes execute and low-confidence always hits a human. Ready to wire Jev into those classifiers this week.
 
-Note the driver: **regex already misclassified once, and the fix is not a better regex.** It is a classifier with a confidence you can gate on. And note the design: high-confidence routes execute, low-confidence always hits a human - [Pattern 2](../docs/patterns.md#pattern-2--confidence-gated-routing), stated as a production requirement.
+Note the driver: **regex already misclassified once, and the fix is not a better regex.** It is a classifier with a confidence you can gate on. And note the design: high-confidence routes execute, low-confidence always hits a human - [Pattern 2](../docs/patterns.md#pattern-2---confidence-gated-routing), stated as a production requirement.
 
 ### Task, model, and exception routing
 
@@ -174,7 +174,7 @@ Note the driver: **regex already misclassified once, and the fix is not a better
 
 > We'd test Jev for task/model routing, exception triage and rubric-based output verification: workflow state → typed decisions → deterministic policy gates, escalating uncertain cases to frontier models or humans.
 
-That is the [cascade](../docs/patterns.md#pattern-4--the-cascade) in one sentence.
+That is the [cascade](../docs/patterns.md#pattern-4---the-cascade) in one sentence.
 
 ### Model routing as a product category
 
@@ -202,7 +202,7 @@ A wrong routing decision costs a re-route. A wrong *action* (issuing a refund, c
 
 ### Ask the branch conditions speculatively
 
-`refund_requested` and `mentions_open_order` are only meaningful on one branch each. Ask them anyway - they cost tokens and almost no time. See [Pattern 1](../docs/patterns.md#pattern-1--speculative-fan-out).
+`refund_requested` and `mentions_open_order` are only meaningful on one branch each. Ask them anyway - they cost tokens and almost no time. See [Pattern 1](../docs/patterns.md#pattern-1---speculative-fan-out).
 
 ### Score the priority separately from the category
 

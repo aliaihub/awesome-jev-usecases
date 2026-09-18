@@ -45,7 +45,7 @@ Source: [semantic_find cookbook](https://docs.typesafe.ai/cookbooks/semantic_fin
 
 ## The retrieve-then-judge pattern
 
-This is [Pattern 5](../docs/patterns.md#pattern-5--retrieve-then-judge), which is the architecture for this whole category.
+This is [Pattern 5](../docs/patterns.md#pattern-5---retrieve-then-judge), which is the architecture for this whole category.
 
 ```python
 # 1. Retrieval: primary sources, filtered before anything reaches the model.
@@ -163,7 +163,7 @@ This is a genuinely novel interface - semantic predicates that compose with `AND
 
 ### Reranking experiments
 
-[carlaaiau/jev-reranking](https://github.com/carlaaiau/jev-reranking) does autonomous search-engine experimentation on the TREC WSJ collection with reranking implementations using Jev.
+[carlaiau/jev-reranking](https://github.com/carlaiau/jev-reranking) does autonomous search-engine experimentation on the TREC WSJ collection with reranking implementations using Jev.
 
 ### Document classification
 
@@ -223,6 +223,6 @@ The whole point is to avoid putting the passage in the expensive context window.
 
 ## Related
 
-- [../docs/patterns.md](../docs/patterns.md#pattern-5--retrieve-then-judge) - the retrieve-then-judge pattern
+- [../docs/patterns.md](../docs/patterns.md#pattern-5---retrieve-then-judge) - the retrieve-then-judge pattern
 - [05-structured-data-extraction.md](05-structured-data-extraction.md) - extraction from retrieved candidates
 - [../docs/failure-modes.md](../docs/failure-modes.md#5-large-noisy-state-causes-context-rot) - why filtering matters

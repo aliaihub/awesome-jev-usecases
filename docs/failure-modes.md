@@ -67,7 +67,7 @@ Instructions carrying double negatives or complex indirection are answered less 
 
 Accuracy falls as the state grows with content unrelated to the decision. Unrelated detail acts as a distractor, and a large state makes it harder to tell which part of the input caused a wrong answer.
 
-**Fix:** retrieve and filter in code first, and send only the fields the question needs. When filtering before the call is not possible, use a `Noul` to filter for relevance. This is [Pattern 5](patterns.md#pattern-5--retrieve-then-judge).
+**Fix:** retrieve and filter in code first, and send only the fields the question needs. When filtering before the call is not possible, use a `Noul` to filter for relevance. This is [Pattern 5](patterns.md#pattern-5---retrieve-then-judge).
 
 Also note the hard limit: 64k tokens for state plus all questions, 32k for state plus the single longest question.
 
