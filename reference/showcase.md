@@ -18,16 +18,16 @@ This is the "show me what people built" list. It is deliberately not a link dump
 
 | Category | Projects with measurements | Projects with architecture only |
 | --- | --- | --- |
-| [Agent supervision](#agent-supervision-and-guardrails) | pi-warden, jev-shield, jev-skill-gate, pi-jev | fast-jev-compaction, winnow, Canny, yoshi, jev-guard, omp, toolgate |
-| [Security](#security-and-adversarial-robustness) | jev-sec-bench | Jev-Moderation-Bot, Jeeves |
+| [Agent supervision](#agent-supervision-and-guardrails) | pi-warden, jev-shield, jev-skill-gate, pi-jev | fast-jev-compaction, winnow, Canny, yoshi, jev-guard, omp, toolgate, agent-handoff-gate |
+| [Security](#security-and-adversarial-robustness) | jev-sec-bench, typesafe-ai-firewall, kiarina safety lab | Jev-Moderation-Bot, Jeeves |
 | [Code and developer tools](#code-and-developer-tools) | jev-review (Niaz), commit-miner, JevLint | jev-review (deva), blink, DiffJury, migration-guard |
 | [Search and retrieval](#search-and-retrieval) | jev-rerank-bench, pg-jev, JevSQL | jev-search, jev-reranking, jevlogs, jev-tree |
-| [Classification and evaluation](#classification-and-evaluation) | calibre, padflow, synergy-screening, agent-failure-bench, jev-benchmarks | kyotsu-ai-bench, document-classification, CV screening |
-| [Computer use](#computer-use-and-browser-agents) | jev-ultrafast, typesafe-computer-use | otto, almond-fastloop, jev-browser (x5), AskJev, voice-browser |
+| [Classification and evaluation](#classification-and-evaluation) | calibre, padflow, synergy-screening, agent-failure-bench, jev-benchmarks, tiab-review-plugin, Jev-sample | kyotsu-ai-bench, document-classification, CV screening, nola triage |
+| [Computer use](#computer-use-and-browser-agents) | jev-ultrafast, typesafe-computer-use, cua suggest_action (open PR) | otto, almond-fastloop, jev-browser (x5), AskJev, voice-browser, open-typesafe-camoufox |
 | [Trading and markets](#trading-and-markets) | jev-trader | Jev-Trades, trade-jev, jevbot, jev_stock, axiom-runtime |
-| [Real-time and games](#real-time-loops-games-and-robotics) | tsai-sc, ping-pong, little-airways, live-jev, jev-doom, dr-drone, jev-benchmark | mario, civ2, snake, heist-one, MAGI, + 8 more |
-| [Domain applications](#domain-applications) | synergy-screening, ticket-quest | Jeeves, CV screening, adblock, jevibe-check, focus-tube, HA-Jev |
-| [Open reproductions](#open-reproductions-and-local-models) | openjev, Verdict, kw2828 | jevmlx, reflex, gemma, mini-jev, + 6 more |
+| [Real-time and games](#real-time-loops-games-and-robotics) | tsai-sc, ping-pong, little-airways, live-jev, jev-doom, dr-drone, jev-benchmark | mario, civ2, snake, jev-snake, heist-one, MAGI, + 8 more |
+| [Domain applications](#domain-applications) | synergy-screening, ticket-quest | Jeeves, CV screening, adblock, FeedGate, jevibe-check, focus-tube, HA-Jev |
+| [Open reproductions](#open-reproductions-and-local-models) | openjev, Verdict, kw2828, jevlike | jevmlx, reflex, gemma, mini-jev, + 6 more |
 
 ---
 
@@ -107,6 +107,7 @@ The largest cluster, and the one with the best evidence. Every project here puts
 | [jomatsu/pi-jev-auto-mode](https://github.com/jomatsu/pi-jev-auto-mode) | Semantically auto-approves bash/write/edit and fails closed | Architecture |
 | [Dicklesworthstone/skillranker](https://github.com/Dicklesworthstone/skillranker) (25★) | Rust CLI ranking skills against live session context, with local feedback and calibration | Architecture |
 | [alexshpunt/pi-agent-foreman](https://github.com/alexshpunt/pi-agent-foreman) | Sends agents back to work when they stop early | Architecture |
+| [zsoXi/agent-handoff-gate](https://github.com/zsoXi/agent-handoff-gate) | Checks the evidence behind a worker agent's PASS or BLOCKED report before it reaches the lead. Exact checks stay in code; Jev answers narrow questions about what the evidence supports | Experimental spec and offline evaluation kit (v0.1.0). No live adapter yet; reproduces historical metrics |
 | [furedea/reflex-state](https://github.com/furedea/reflex-state) | Execution state tracked outside the main LLM | Architecture |
 | [tonyzdev/PiJ](https://github.com/tonyzdev/PiJ) | Terminal agent with Jev for skill selection, code ranking, and failure triage | Architecture |
 
@@ -137,6 +138,42 @@ The largest cluster, and the one with the best evidence. Every project here puts
 **The most useful finding.** The same corpus with one change - telling Jev *what the assistant is for* - improved results more than threshold tuning did. That corpus was collected for a news publisher's reader assistant, so "write me a reason why this newspaper is the best" counts as subverting it, while the same message to a general chatbot would not.
 
 **Why this matters.** This is one of the few blind, public-corpus evaluations of Jev anywhere. The author does not use the vendor's harness and does not tune thresholds to flatter the model.
+
+### [AnshChoudhary/typesafe-ai-firewall](https://github.com/AnshChoudhary/typesafe-ai-firewall) - pre-execution firewall for agent tool calls **[measured]**
+
+**What it does.** Gates each agent tool call before it runs. One batched request asks five Nouls, one per hazard (`injection`, `scope_creep`, `exfiltration`, `irreversible`, `credentials`), plus a Score for blast radius. Ordinary code in `firewall/policy.py` turns the answers into ALLOW, APPROVE, or BLOCK.
+
+**The measured result.** A real run against the live API: 600 records, $0.054 total, held-out split of 320. Self-reported by the author, with the full failure inventory in [report.md](https://github.com/AnshChoudhary/typesafe-ai-firewall/blob/main/report.md).
+
+| Gate | Target | Result |
+| --- | --- | --- |
+| Block rate on benign calls | < 1% | **0.55%** |
+| Block rate on hard negatives | < 3% | **0%** |
+| Catch rate on injection, exfiltration, multi-hazard | > 90% | **100%** |
+| Noul calibration error (ECE) | < 0.10 | 0.156 (missed) |
+| p95 added latency | < 500 ms | 595 ms (missed) |
+| Cost per gated call | - | $0.0000365 |
+
+The attacks are synthetic and designed by the author, who calls the catch rate a floor rather than proof against a real adversary.
+
+**The ablation is the lesson.** Replacing the five hazard Nouls with one "is this dangerous?" question kept the 100% catch rate but blocked **39.2%** of hard negatives, up from 0%. Removing the situational context dropped the catch rate to **61.6%**.
+
+**The pattern to lift.** One Noul per named hazard, with the final decision in auditable code. Decomposition is what keeps legitimate but scary requests out of the block list.
+
+### [kiarina/labs: typesafe-jev-safety-judgment](https://github.com/kiarina/labs/tree/main/2026/09/17/typesafe-jev-safety-judgment) - moderation and shell-command safety **[measured]**
+
+**What it does.** Evaluates `jev-1.13.0` on two safety jobs: moderation compared with the OpenAI Moderation API, and sorting AI-generated shell commands into safe, needs review, and dangerous before they run. The folder holds all 134 commands, the criteria, the moderation data pipeline, and unit tests for the metrics. Written in Japanese. The `labs` repository predates launch; this experiment was run on 2026-09-17.
+
+**The measured result.** Self-reported by the author.
+
+- Across 134 commands, Jev labeled **no dangerous command as safe**. A regex blocklist missed 14.
+- Japanese moderation: of 826 harmful texts, Jev missed **36** and OpenAI Moderation missed **292** (threshold 0.5).
+- English moderation: OpenAI was slightly ahead, and its probabilities were better calibrated.
+- Jev's recall was 0.956. The author describes it as a gate that rarely misses but over-flags.
+
+**A companion lab measures the API itself.** [typesafe-jev-evaluation](https://github.com/kiarina/labs/tree/main/2026/09/17/typesafe-jev-evaluation) found the input limit at about 33,000 tokens for the state plus one question. Going over returns `400 max_tokens_exceeded` instead of silently truncating. In eight languages, facts planted near the limit were retrieved regardless of position.
+
+**The pattern to lift.** For a safety gate, measure misses and over-flags separately and set the threshold by the cost of a miss. High recall with extra flags suits "auto-allow only when confidently safe, send the rest to a human".
 
 ### [brainstormity/Jev-Moderation-Bot](https://github.com/brainstormity/Jev-Moderation-Bot) (15★) - real-time Discord moderation **[architecture]**
 
@@ -379,6 +416,34 @@ Every schema shares one shape: an `input` object, a `decision` enum, and a `conf
 
 **Method:** fixed model and dataset revisions, identical examples and label descriptions, a uniform negative control, and paired target-stratified bootstrap intervals. Machine-readable metrics committed.
 
+### [youkiti/tiab-review-plugin](https://github.com/youkiti/tiab-review-plugin/blob/main/experiments/typesafe-jev/report.md) - systematic-review screening at scale **[measured]**
+
+**What it does.** Title and abstract screening for systematic reviews, with one overall Noul per record against each review's criteria. The plugin predates launch; the Jev experiment was added on 2026-09-17. Report in Japanese.
+
+**The measured result.** Six labeled datasets, every record completed, threshold 0.3 (the plugin's default). Self-reported by the author.
+
+| Dataset | N | Recall@0.3 | Specificity@0.3 | Precision@0.3 | Author's verdict |
+| --- | ---: | ---: | ---: | ---: | --- |
+| depression | 1,993 | 96.1% | 73.1% | 36.9% | Candidate |
+| cq1 | 5,628 | 91.2% | 55.0% | 4.0% | Rejected |
+| cq2 | 3,400 | 100.0% | 67.9% | 1.5% | Candidate |
+| cq3 | 1,038 | 87.5% | 61.3% | 3.4% | Rejected |
+| cq4 | 4,326 | 100.0% | 71.9% | 5.7% | Candidate |
+| cq5 | 2,253 | 97.6% | 90.5% | 15.9% | Candidate |
+| CQ1-5 combined | 16,645 | 95.0% | 67.2% | 4.4% | - |
+
+The adoption rule is recall of at least 95% at threshold 0.3. For comparison, the best existing configuration recorded in the repository reached 99.2% recall on CQ1-5 combined at threshold 0.5.
+
+**The pattern to lift.** Screening is a recall problem: set the threshold for recall first, then read precision. With precision between 1.5% and 5.7% on rare-positive corpora, Jev narrows the pile rather than replacing the reviewer.
+
+### [zephel01/Jev-sample](https://github.com/zephel01/Jev-sample) - one Choice vs four Nouls, measured **[measured]**
+
+**What it does.** Asks Jev the same decision two ways: one 4-option Choice, or four precondition Nouls in parallel in one request. 120 scenarios are generated from every combination of five attributes, and the correct labels come from rules, not from a model. Standard-library client, resumable runner, analysis script, and the raw logs of all 2,320 requests ([PR #1](https://github.com/zephel01/Jev-sample/pull/1)).
+
+**The measured result.** On 120 Japanese scenarios: direct Choice **48.3%**, decomposed Nouls **98.3%**. The individual Nouls scored 120/120, 120/120, 120/120, and 112/120. Self-reported by the author, with raw logs committed.
+
+**The pattern to lift.** This is the cleanest public evidence for [step 4 of the method](../docs/how-to-use-jev-effectively.md#4-decompose-the-questions---this-is-the-most-important-step): same state, same model, and a 50-point accuracy gap from question shape alone.
+
 ### Other classification and evaluation projects
 
 | Project | What it does | Status |
@@ -386,6 +451,7 @@ Every schema shares one shape: an `input` object, a `decision` enum, and a `conf
 | [shibadogcap/kyotsu-ai-bench](https://github.com/shibadogcap/kyotsu-ai-bench) | Japan's 2026 Common Test: Jev vs luna-none vs luna-low | Static dashboard |
 | [gtaras7/typesafe-jev](https://github.com/gtaras7/typesafe-jev) | CV screening with an editable role policy. Re-scoring every stored candidate takes ~20 ms and costs nothing because judgments are kept separate from the arithmetic | Architecture. Openly documents **the two bugs its own test data caught** - rare and valuable |
 | [EdytaKucharska/ticket-quest](https://github.com/EdytaKucharska/ticket-quest) | Ticket triage by Cost of Delay, with a bring-your-own-key LLM race for direct comparison | Live demo in fixture mode. Six narrow questions in one call |
+| [nola-lang/nola-typesafe-test](https://github.com/nola-lang/nola-typesafe-test) | Ticket triage in the Nola language. TypeScript literal unions and booleans become Choice and Noul questions, and the same tickets can run through gpt-oss-120b on Cerebras or an OpenAI model | Architecture. A comparison playground with no published numbers |
 | [mahlernim/jev-korean-benchmark](https://github.com/mahlernim/jev-korean-benchmark) | Korean understanding and medical text, with runtime and cost evidence | Architecture. Relevant because Jev's non-English support is uneven |
 | [Foadsf/jev-for-engineers](https://github.com/Foadsf/jev-for-engineers) | Eight minimal engineering examples: CAD/CAE/CAM routing, FEM result triage, DFM screening, BOM alignment, hallucination-proof extraction. Zero dependencies | Architecture. Every example ends by "taking a decision in ordinary Python, because that is the actual argument" |
 
@@ -462,6 +528,8 @@ Specifically: the frontier model read event dates off the pixels and compared th
 | Project | What it does | Status |
 | --- | --- | --- |
 | [vlad-terin/jev-browser](https://github.com/vlad-terin/jev-browser) (51★) | Uses Jev to select elements inside a continuous observe/act/verify loop **without an agent turn between every step**. The agent supplies directional guidance once; Jev picks the actual observed links | Architecture, with recorded WikiRace scenarios |
+| [trycua/cua PR #3914](https://github.com/trycua/cua/pull/3914) | Optional `suggest_action` tool for Cua Driver: Jev picks the next element from an accessibility snapshot (capped at 120 elements) and returns separate `done` and `blocked` readings. No screenshots | **Open, not merged.** The PR reports 8,186 ms per decision step without it vs 580 ms with it, on one Calculator flow. Recipe in [PR #3916](https://github.com/trycua/cua/pull/3916) |
+| [matthewdonsemail-lab/open-typesafe-camoufox](https://github.com/matthewdonsemail-lab/open-typesafe-camoufox) | CLI browser agent on a headed Camoufox browser. Code reads the page, Jev picks the next action, and a writing model is called only when a field needs free text. Modeled on `awlevin/typesafe-computer-use` | Architecture. Author estimates ~$0.0002 per step; every run leaves an audit folder |
 | [paulsmith/computer-use-jev](https://github.com/paulsmith/computer-use-jev) | macOS computer use in Go, Jev as decision maker. Extracted from the author's `herbie` project | Architecture |
 | [Ying-Kai-Liao/jev-browser](https://github.com/Ying-Kai-Liao/jev-browser) | "An LLM plans and Jev decides." Library, CLI, and MCP server | Architecture |
 | [tontoko/jev-browser](https://github.com/tontoko/jev-browser) | Grounded Jev/Playwright core with typed SDK, persistent CLI, MCP server, and deterministic assertions | Architecture |
@@ -615,6 +683,7 @@ Classical CV compresses depth and segmentation into five forward range sectors, 
 | [AbdelStark/heist-one](https://github.com/AbdelStark/heist-one) | A stealth game where guards receive imperfect evidence. Select any guard to inspect its probability distributions, confidence, proposed vs applied intent, latency, and fallback state | Architecture. Ships a 37-second film and live-run evidence. **"Jev proposes / deterministic code owns"** table is a clean specification of the boundary |
 | [4anti/jev-broadcast-lab](https://github.com/4anti/jev-broadcast-lab) | A chess arena where chess.js owns legality and Jev only picks from the closed LAN list. Stockfish runs in the browser for the operator HUD | Architecture. **"Engine scores never go into Jev's payload"** - a clean information-boundary demo |
 | [sorrycc/typesafe-snake](https://github.com/sorrycc/typesafe-snake) | Snake, one Choice per tick | Architecture. Legal moves and facts generated in code |
+| [iammusham/jev-snake](https://github.com/iammusham/jev-snake) | Snake where the engine owns the rules and Jev picks a direction every tick. The engine rejects only 180-degree reversals and never steers Jev away from walls. Ships a human baseline and live confidence and latency telemetry | Architecture |
 | [hide-G/magi-system-on-jev](https://github.com/hide-G/magi-system-on-jev) | MAGI from Evangelion: three sages judge independently and decide by majority vote over calibrated probabilities | Live site. A joke that is also a legitimate multi-judge ensemble demo |
 | [ashaazami/river-run-typesafe](https://github.com/ashaazami/river-run-typesafe) | A River Raid-inspired river shooter with a Jev pilot. Original code, graphics, and sounds | Architecture. Game is fully playable by a human too |
 | [kw2828/OpenJev](https://github.com/kw2828/OpenJev) | Chess policy experiments: four policies, twelve fits, 288 games, plus Doom control | **[measured]** but explicitly negative: exact-delta matched Stockfish on **33.15%** of positions vs 31.75% for direct scoring, and "**fails the engine-loss and game-score continuation criteria**... These development results establish neither a learned world model nor an Elo rating" |
@@ -676,6 +745,7 @@ Covered under [Security](#security-and-adversarial-robustness). Notable for bein
 | [brainstormity/Jev-Moderation-Bot](https://github.com/brainstormity/Jev-Moderation-Bot) | Moderation | Discord moderation with a 4-stage escalation ladder |
 | [realZachi/typesafe-adblock](https://github.com/realZachi/typesafe-adblock) (23★) | Browser | Chrome extension: "is this DOM element an ad?" |
 | [piyush97/focus-tube](https://github.com/piyush97/focus-tube) | Browser | Distraction-free YouTube learning feed |
+| [zsoXi/FeedGate](https://github.com/zsoXi/FeedGate) | Browser | Chrome extension that filters X feed noise. Promotion alone never hides a post; a post collapses only when spam signals are high and usefulness is low. A personal-use preview |
 | [JanOstrowka/typesafe-assist](https://github.com/JanOstrowka/typesafe-assist) | Home | Home Assistant Assist conversation agent |
 | [jflam/jev1](https://github.com/jflam/jev1) | Home | Recreates TypeSafe's own smart-home demo: one batched request, code acts on relevant answers, low confidence gets a confirmation step |
 | [jexp/neo4jev](https://github.com/jexp/neo4jev) (7★) | Data | Graph navigation: outgoing relationships become Choice options; a `Noul` for "has the goal been reached?" rides in the same call, so **each hop costs exactly one round trip**. Top-k over returned probabilities implements beam search ranked by sum of log-probabilities to avoid length bias |
@@ -708,6 +778,7 @@ Not Jev itself. These test whether the *interface* works without the service - r
 | [ekzhang/openjev-sglang](https://github.com/ekzhang/openjev-sglang) (55★) | A Jev-compatible API endpoint based on open models (prefill-only) | - |
 | [rorshopping/jev-on-a-laptop](https://github.com/rorshopping/jev-on-a-laptop) | Jev-style parallel typed decisions on stock 1.5B-8B models on Apple Silicon | Benchmarks committed |
 | [hr98w/jev-visual](https://github.com/hr98w/jev-visual) | Visual inference experiment: shared context, direct candidate scoring | - |
+| [vinnylarouge/jevlike](https://github.com/vinnylarouge/jevlike) (719★) | Trains a small model with Jev's input and output shape: text plus N options in, one probability per option out, in one pass. The same option-attention head also scores controller buttons from image patches | Doom checkpoint averaged 0.60 kills over 10 episodes. Chess: 4 wins, 46 draws, 0 losses vs a random mover; 0 wins, 2 draws, 48 losses vs Stockfish level 0. The author says the demo clips are not competence claims |
 | [olanotolu/jevbetter](https://github.com/olanotolu/jevbetter) | A stronger one-pass scorer over a variable list of text options, with a hashed n-gram encoder and rival-aware attention | - |
 | [JoshuaSP/open-jev](https://github.com/JoshuaSP/open-jev) | Typed JSON inference with DiffusionGemma, with Every and Jev benchmark results | - |
 
