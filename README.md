@@ -120,10 +120,6 @@ The rest of this repo is the long version of that paragraph.
 
 ---
 
-## Related lists
-
-This repository is use-case and guidance focused. For pure project indexes, see [AbdelStark/awesome-typesafe](https://github.com/AbdelStark/awesome-typesafe), [yibie/awesome-jev](https://github.com/yibie/awesome-jev), [Anil-matcha/awesome-jev-by-typesafe](https://github.com/Anil-matcha/awesome-jev-by-typesafe), [AnotiaWang/awesome-jev](https://github.com/AnotiaWang/awesome-jev), and [OmniJev/awesome-jev](https://github.com/OmniJev/awesome-jev).
-
 ## License
 
 [MIT](LICENSE). Not affiliated with or endorsed by TypeSafe AI.
