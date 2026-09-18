@@ -6,7 +6,9 @@ This is the "show me what people built" list. It is deliberately not a link dump
 
 **Not included:** SDKs, client libraries, CLI wrappers, skill packs, and harness plumbing. Those are in [ecosystem.md](ecosystem.md).
 
-**Snapshot:** 2026-09-18, three days after launch. Star counts are live from the GitHub API at collection time.
+**Snapshot:** 2026-09-18, three days after launch. Star counts are as of collection time and move daily in this ecosystem.
+
+> **Stars are not the ranking here.** Within a launch week they track attention, not quality. [jev-sec-bench](https://github.com/Gaurav-Gosain/jev-sec-bench) and [jev-rerank-bench](https://github.com/anessbelbati/jev-rerank-bench) sit at 1 star each and are the two most rigorous projects in this document; a game demo sits at 200+. Entries are ordered by category and by whether they publish evidence, not by star count. The `[measured]` and `[architecture]` labels are the thing to sort by.
 
 > **Read this first.** Every project here was created on or after 2026-09-15 and is therefore a **launch-week artifact**. Treat them as proofs of concept, not production case studies. Measured results are **self-reported by their authors** unless stated otherwise, and none has been independently reproduced. The projects marked **[measured]** publish numbers; those marked **[architecture]** describe a design without evaluation.
 
@@ -43,7 +45,7 @@ The largest cluster, and the one with the best evidence. Every project here puts
 
 **The pattern to lift.** Name the violation in the steering message. The difference between a guard that blocks and one that *explains* is the difference between a stuck agent and a self-correcting one.
 
-### [y0usaf/pi-jev](https://github.com/y0usaf/pi-jev) (26★) - decision layer for the Pi coding agent **[measured]**
+### [y0usaf/pi-jev](https://github.com/y0usaf/pi-jev) (27★) - decision layer for the Pi coding agent **[measured]**
 
 **What it does.** Three components: a gate that judges `bash`, `write`, and `edit` calls before they run; an output judge that reads what a `bash` call printed; and a `jev_ask` tool letting the model request the same kind of judgment itself.
 
@@ -75,7 +77,7 @@ The largest cluster, and the one with the best evidence. Every project here puts
 
 **The pattern to lift.** "A gate that saves tokens by hiding what you needed is worse than no gate." If your gate is a filter, you owe it an eval on whether it keeps what matters.
 
-### [tamaratran/fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) (628★) - lossless context compaction **[architecture]**
+### [tamaratran/fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) (707★) - lossless context compaction **[architecture]**
 
 **What it does.** Replaces Claude Code's compaction summary with Jev decisions. Every tool call and result is scored in one fast request; stale ones are dropped or truncated; **everything kept stays verbatim**.
 
@@ -103,7 +105,7 @@ The largest cluster, and the one with the best evidence. Every project here puts
 | [STRML/omp-jevens-classifier](https://github.com/STRML/omp-jevens-classifier) | Closes two holes in OMP's yolo mode: `curl \| sh`, `rm -rf /`, `dd of=/dev/*`, `mkfs`, `kill -9 1`, `nc -e` | Architecture. Note the finding that the native gate ranks critical-pattern matches above prompt rules, so a pattern rule never fires |
 | [ndolinschi/toolgate](https://github.com/ndolinschi/toolgate) | allow / ask_human / deny for planned tool calls | Architecture, live demo |
 | [jomatsu/pi-jev-auto-mode](https://github.com/jomatsu/pi-jev-auto-mode) | Semantically auto-approves bash/write/edit and fails closed | Architecture |
-| [Dicklesworthstone/skillranker](https://github.com/Dicklesworthstone/skillranker) (24★) | Rust CLI ranking skills against live session context, with local feedback and calibration | Architecture |
+| [Dicklesworthstone/skillranker](https://github.com/Dicklesworthstone/skillranker) (25★) | Rust CLI ranking skills against live session context, with local feedback and calibration | Architecture |
 | [alexshpunt/pi-agent-foreman](https://github.com/alexshpunt/pi-agent-foreman) | Sends agents back to work when they stop early | Architecture |
 | [furedea/reflex-state](https://github.com/furedea/reflex-state) | Execution state tracked outside the main LLM | Architecture |
 | [tonyzdev/PiJ](https://github.com/tonyzdev/PiJ) | Terminal agent with Jev for skill selection, code ranking, and failure triage | Architecture |
@@ -136,7 +138,7 @@ The largest cluster, and the one with the best evidence. Every project here puts
 
 **Why this matters.** This is one of the few blind, public-corpus evaluations of Jev anywhere. The author does not use the vendor's harness and does not tune thresholds to flatter the model.
 
-### [brainstormity/Jev-Moderation-Bot](https://github.com/brainstormity/Jev-Moderation-Bot) (13★) - real-time Discord moderation **[architecture]**
+### [brainstormity/Jev-Moderation-Bot](https://github.com/brainstormity/Jev-Moderation-Bot) (15★) - real-time Discord moderation **[architecture]**
 
 **What it does.** Detects phishing links, spam, and social engineering in real time. Evaluates message content plus contextual metadata (author account age, link presence, channel) in parallel, then applies a **4-stage progressive escalation ladder**: warning DM → final warning DM → timeout → ban. Logs to native Discord audit logs and a `#mod-log` channel.
 
@@ -159,7 +161,7 @@ Jev interprets messages and strike history; Gemini describes image attachments a
 
 ## Code and developer tools
 
-### [devagrawal09/jev-review](https://github.com/devagrawal09/jev-review) (178★) - staged code review **[architecture]**
+### [devagrawal09/jev-review](https://github.com/devagrawal09/jev-review) (180★) - staged code review **[architecture]**
 
 **What it does.** Reviews a Git diff or scans a whole codebase as a **staged pipeline**, not one big prompt:
 
@@ -178,7 +180,7 @@ Noul risk matrix
 
 **The pattern to lift.** [Retrieve, then judge](../docs/patterns.md#pattern-5---retrieve-then-judge) applied to code: select the evidence before scoring it.
 
-### [NiazMorshed2007/jev-review](https://github.com/NiazMorshed2007/jev-review) (84★) - continuous quality scores in-context **[measured]**
+### [NiazMorshed2007/jev-review](https://github.com/NiazMorshed2007/jev-review) (86★) - continuous quality scores in-context **[measured]**
 
 **What it does.** Runs as a local MCP server and gives Claude Code, Codex, Cursor, and OpenCode structured quality scores **while they work**. One tool: `jev_review`. The agent remains responsible for diagnosing and fixing; Jev supplies a fast scalar signal across correctness, complexity, changeability, modularity, tests, and security.
 
@@ -218,9 +220,9 @@ commit-miner scan . --cwe 79,89
 | [raihankhan-rk/diffjury](https://github.com/raihankhan-rk/diffjury) | Paste a public PR URL, get a risk judgment. Nine questions in one call: `risk` (Score), `review_depth` (Choice: skim/standard/deep), `needs_design`, `needs_security`, `merge_blocker` (Nouls), `missing_tests`/`docs_debt`/`blast_radius` (Scores), `verdict` (Choice) | Architecture. The question set is a good template |
 | [opaielsheikh/typesafe-migration-guard](https://github.com/opaielsheikh/typesafe-migration-guard) | Intercepts DDL in CI/CD and blocks destructive operations (`DROP TABLE`, `DROP COLUMN`, unindexed truncation) with an HTTP 403 before touching production | Architecture. Argues static regex/AST linters are brittle at the edges |
 | [BunsDev/clarity-judge](https://github.com/BunsDev/clarity-judge) | Writing quality on **separate named checks** - hedging, em-dash overuse, clarity, filler, tone, passive voice, actionability - each with its own verdict and confidence | Architecture. Ships a no-key demo |
-| [kitze/skillbox](https://github.com/kitze/skillbox) (105★) | Self-hosted versioned skill library with MCP, scoped clients, and optional Jev recommendations | Architecture |
+| [kitze/skillbox](https://github.com/kitze/skillbox) (109★) | Self-hosted versioned skill library with MCP, scoped clients, and optional Jev recommendations | Architecture |
 | [samtay32/jev-system-architect](https://github.com/samtay32/jev-system-architect) | A skill that finds fuzzy semantic judgment in a design and turns it into small Choice/Score/Noul primitives | Architecture - meta-tooling for the design method |
-| [dbreunig/building-with-jev-skill](https://github.com/dbreunig/building-with-jev-skill) (22★) | A skill for writing and improving programs that call Jev | Architecture |
+| [dbreunig/building-with-jev-skill](https://github.com/dbreunig/building-with-jev-skill) (23★) | A skill for writing and improving programs that call Jev | Architecture |
 
 ---
 
@@ -244,7 +246,7 @@ commit-miner scan . --cwe 79,89
 
 **The pattern to lift.** A 4-level Score rubric over 30 candidates in one call is the right shape for reranking - and at **$0.45 per 1,000 queries** it competes with dedicated rerankers on cost.
 
-### [realZachi/pg-jev](https://github.com/realZachi/pg-jev) (45★) - natural-language SQL predicates **[measured]**
+### [realZachi/pg-jev](https://github.com/realZachi/pg-jev) (50★) - natural-language SQL predicates **[measured]**
 
 **What it does.** A PostgreSQL extension where `jev()` is an ordinary boolean function, so it composes with everything else in SQL:
 
@@ -391,7 +393,7 @@ Every schema shares one shape: an `input` object, a `decision` enum, and a `conf
 
 ## Computer use and browser agents
 
-### [browser-use/jev-ultrafast](https://github.com/browser-use/jev-ultrafast) (2,466★) - the flagship **[measured]**
+### [browser-use/jev-ultrafast](https://github.com/browser-use/jev-ultrafast) (2,564★) - the flagship **[measured]**
 
 **What it does.** A browser agent with a dynamic, indexed action space. Every observation produces a numbered element table; one Jev request picks both the operation and its target; a small LLM writes text only when the operation is `TYPE_TEXT`.
 
@@ -421,7 +423,7 @@ Click, type, and select targets are all asked in the same round trip; only the o
 
 **The pattern to lift.** [Speculative fan-out](../docs/patterns.md#pattern-1---speculative-fan-out) applied to actions, with the legal action set generated in code so the model cannot choose something impossible.
 
-### [awlevin/typesafe-computer-use](https://github.com/awlevin/typesafe-computer-use) (173★) - macOS computer use at $0.0002/step **[measured]**
+### [awlevin/typesafe-computer-use](https://github.com/awlevin/typesafe-computer-use) (174★) - macOS computer use at $0.0002/step **[measured]**
 
 **What it does.** Drives a Mac toward a plain-English goal without ever sending a screenshot to a large model. OCR reads the screen, Jev picks the next action, and a writing model is called only when a text field genuinely needs free text.
 
@@ -459,7 +461,7 @@ Specifically: the frontier model read event dates off the pixels and compared th
 
 | Project | What it does | Status |
 | --- | --- | --- |
-| [vlad-terin/jev-browser](https://github.com/vlad-terin/jev-browser) (50★) | Uses Jev to select elements inside a continuous observe/act/verify loop **without an agent turn between every step**. The agent supplies directional guidance once; Jev picks the actual observed links | Architecture, with recorded WikiRace scenarios |
+| [vlad-terin/jev-browser](https://github.com/vlad-terin/jev-browser) (51★) | Uses Jev to select elements inside a continuous observe/act/verify loop **without an agent turn between every step**. The agent supplies directional guidance once; Jev picks the actual observed links | Architecture, with recorded WikiRace scenarios |
 | [paulsmith/computer-use-jev](https://github.com/paulsmith/computer-use-jev) | macOS computer use in Go, Jev as decision maker. Extracted from the author's `herbie` project | Architecture |
 | [Ying-Kai-Liao/jev-browser](https://github.com/Ying-Kai-Liao/jev-browser) | "An LLM plans and Jev decides." Library, CLI, and MCP server | Architecture |
 | [tontoko/jev-browser](https://github.com/tontoko/jev-browser) | Grounded Jev/Playwright core with typed SDK, persistent CLI, MCP server, and deterministic assertions | Architecture |
@@ -475,7 +477,7 @@ Specifically: the frontier model read event dates off the pixels and compared th
 
 ## Trading and markets
 
-### [jarrodwatts/jev-trader](https://github.com/jarrodwatts/jev-trader) (543★) - one decision per blockchain block **[measured]**
+### [jarrodwatts/jev-trader](https://github.com/jarrodwatts/jev-trader) (555★) - one decision per blockchain block **[measured]**
 
 **What it does.** A market maker on **Kuru MON-USDC**. Every ~300 ms Monad block, Jev reads the order book and answers buy or sell; the bot posts a **post-only limit order one tick inside the touch**, replacing the last one. Fills happen when a taker hits it, so the bot earns the spread instead of paying it.
 
@@ -608,7 +610,7 @@ Classical CV compresses depth and segmentation into five forward range sectors, 
 
 | Project | What it does | Status |
 | --- | --- | --- |
-| [fhshaik/typesafe-mario](https://github.com/fhshaik/typesafe-mario) (221★) | Super Mario Bros. from emulator RAM translated to object-centric JSON - motion, jump trajectory, upcoming enemies, terrain, measured response delay, recent-control results, episode progress. Seven legal actions. No screenshots | Architecture. Ships `state-demo` to inspect the exact JSON without launching the game |
+| [fhshaik/typesafe-mario](https://github.com/fhshaik/typesafe-mario) (223★) | Super Mario Bros. from emulator RAM translated to object-centric JSON - motion, jump trajectory, upcoming enemies, terrain, measured response delay, recent-control results, episode progress. Seven legal actions. No screenshots | Architecture. Ships `state-demo` to inspect the exact JSON without launching the game |
 | [phyous/tsai-civ2](https://github.com/phyous/tsai-civ2) | Civilization II in a browser with live action probabilities. Named Choice vectors cover empire policy, cities, research, diplomacy, units, exploration, warfare | **Explicitly unverified:** "no complete-game victory has been verified yet" and "displayed values are action probabilities, not a probability of victory" |
 | [AbdelStark/heist-one](https://github.com/AbdelStark/heist-one) | A stealth game where guards receive imperfect evidence. Select any guard to inspect its probability distributions, confidence, proposed vs applied intent, latency, and fallback state | Architecture. Ships a 37-second film and live-run evidence. **"Jev proposes / deterministic code owns"** table is a clean specification of the boundary |
 | [4anti/jev-broadcast-lab](https://github.com/4anti/jev-broadcast-lab) | A chess arena where chess.js owns legality and Jev only picks from the closed LAN list. Stockfish runs in the browser for the operator HUD | Architecture. **"Engine scores never go into Jev's payload"** - a clean information-boundary demo |
@@ -677,7 +679,7 @@ Covered under [Security](#security-and-adversarial-robustness). Notable for bein
 | [JanOstrowka/typesafe-assist](https://github.com/JanOstrowka/typesafe-assist) | Home | Home Assistant Assist conversation agent |
 | [jflam/jev1](https://github.com/jflam/jev1) | Home | Recreates TypeSafe's own smart-home demo: one batched request, code acts on relevant answers, low confidence gets a confirmation step |
 | [jexp/neo4jev](https://github.com/jexp/neo4jev) (7★) | Data | Graph navigation: outgoing relationships become Choice options; a `Noul` for "has the goal been reached?" rides in the same call, so **each hop costs exactly one round trip**. Top-k over returned probabilities implements beam search ranked by sum of log-probabilities to avoid length bias |
-| [ChetasLua/jevmeter](https://github.com/ChetasLua/jevmeter) (37★) | Media | A live "BS meter" over any video: every sentence scored, rendered as a 16:9 edit. Presets for debates, earnings calls, and podcasts. **Full debate ≈$0.05**; author reports 99% held-out preset accuracy |
+| [ChetasLua/jevmeter](https://github.com/ChetasLua/jevmeter) (40★) | Media | A live "BS meter" over any video: every sentence scored, rendered as a 16:9 edit. Presets for debates, earnings calls, and podcasts. **Full debate ≈$0.05**; author reports 99% held-out preset accuracy |
 | [adhyaay-karnwal/jev-chat](https://github.com/adhyaay-karnwal/jev-chat) | Research | Autoregression over Jev as a language model - deliberately the wrong use. Ships a paper measuring both the wrong and the TypeSafe-native approach |
 | [superagents-lab/jev-search](https://github.com/superagents-lab/jev-search) | Search | Live web search with Jev source selection |
 | [kostysh/goblin-hr](https://github.com/kostysh/goblin-hr) | HR | Simple usage demo |
@@ -693,17 +695,17 @@ Not Jev itself. These test whether the *interface* works without the service - r
 
 | Project | What it does | Measured |
 | --- | --- | --- |
-| [TheoLeeCJ/openjev](https://github.com/TheoLeeCJ/openjev) (839★) | Reads typed option probabilities directly off a frozen 4B model's logits. No answer sentence, no JSON repair, no decoding loop. Pins the exact model revision and commits a prompt hash per row | Author reports **2-3x speedup** over prefixed structured output on Qwen2.5-1.5B |
+| [TheoLeeCJ/openjev](https://github.com/TheoLeeCJ/openjev) (890★) | Reads typed option probabilities directly off a frozen 4B model's logits. No answer sentence, no JSON repair, no decoding loop. Pins the exact model revision and commits a prompt hash per row | Author reports **2-3x speedup** over prefixed structured output on Qwen2.5-1.5B |
 | [Heman10x-NGU/Verdict-open-jev](https://github.com/Heman10x-NGU/Verdict-open-jev) | A 151M ModernBERT decision engine with RLCD-style calibration (Brier loss), a WebGPU in-browser playground, and a **Jev benchmark audit** | **Under 35 ms** per decision |
 | [kw2828/OpenJev](https://github.com/kw2828/OpenJev) | Browser decision playground plus reproducible experiments on memory, uncertainty, Doom control, and chess | Publishes negative results in full |
 | [bnsd55/jevmlx](https://github.com/bnsd55/jevmlx) | Jev-style parallel constrained decisions for any MLX model on Apple Silicon; typed schema-valid JSON in one forward pass | - |
-| [kshetrajna12/reflex](https://github.com/kshetrajna12/reflex) (20★) | A small open decision model: state + typed questions → calibrated probabilities, on Qwen3.5 | - |
+| [kshetrajna12/reflex](https://github.com/kshetrajna12/reflex) (25★) | A small open decision model: state + typed questions → calibrated probabilities, on Qwen3.5 | - |
 | [akash-kamat/system-one-gemma](https://github.com/akash-kamat/system-one-gemma) | Gemma 3 270M with a scoring head for fast calibrated decisions in a single forward pass | - |
 | [mithalouni/system-one-open](https://github.com/mithalouni/system-one-open) | Open replica on Gemma 4 E2B | - |
 | [siliconkernel/vllm-jev-decison](https://github.com/siliconkernel/vllm-jev-decison) | Classification-only typed decisions for vLLM: finite-schema candidate scoring with probabilities | - |
 | [kikoncuo/jevfire](https://github.com/kikoncuo/jevfire) | Parallel decisions for CUDA LLMs via vLLM, using the pretrained head to score verified single-token labels and assembling JSON in code | **28 decisions in 497 ms**, reported as **10.3x faster** than generating equivalent constrained JSON on Qwen3.8-27B-FP8 |
 | [r-ms/mini-jev](https://github.com/r-ms/mini-jev) | Reads the option letter's logits instead of generating | - |
-| [ekzhang/openjev-sglang](https://github.com/ekzhang/openjev-sglang) (49★) | A Jev-compatible API endpoint based on open models (prefill-only) | - |
+| [ekzhang/openjev-sglang](https://github.com/ekzhang/openjev-sglang) (55★) | A Jev-compatible API endpoint based on open models (prefill-only) | - |
 | [rorshopping/jev-on-a-laptop](https://github.com/rorshopping/jev-on-a-laptop) | Jev-style parallel typed decisions on stock 1.5B-8B models on Apple Silicon | Benchmarks committed |
 | [hr98w/jev-visual](https://github.com/hr98w/jev-visual) | Visual inference experiment: shared context, direct candidate scoring | - |
 | [olanotolu/jevbetter](https://github.com/olanotolu/jevbetter) | A stronger one-pass scorer over a variable list of text options, with a hashed n-gram encoder and rival-aware attention | - |

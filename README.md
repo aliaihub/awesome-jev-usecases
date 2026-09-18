@@ -48,6 +48,33 @@ All questions in a request are evaluated **in parallel and in isolation** agains
 
 ---
 
+## What people have built
+
+Jev launched on 15 September 2026. Within three days the community had shipped browser agents, trading bots, drones, code reviewers, and a semantic firewall. This is a sample - each entry links to the repository, and [reference/showcase.md](reference/showcase.md) has the full detail plus 100+ more.
+
+| Project | What it does | Headline result |
+| --- | --- | --- |
+| [**browser-use/jev-ultrafast**](https://github.com/browser-use/jev-ultrafast) | Browser agent with a dynamic action space. Jev picks the operation and the target; a small LLM writes text only when the step needs it | Zürich → London on Google Flights in **7.1 s for $0.0039** |
+| [**TheoLeeCJ/openjev**](https://github.com/TheoLeeCJ/openjev) | Reproduces the Jev interface on a frozen 4B model by reading option logits instead of generating | No waitlist; runs in a browser |
+| [**tamaratran/fast-jev-compaction**](https://github.com/tamaratran/fast-jev-compaction) | Replaces Claude Code's lossy compaction summary with Jev keep/delete decisions | Kept content stays **verbatim** - nothing is rewritten |
+| [**jarrodwatts/jev-trader**](https://github.com/jarrodwatts/jev-trader) | Market maker on Kuru MON-USDC. One buy/sell decision per Monad block | **81 ms** model latency, 2 RPC round trips per block |
+| [**fhshaik/typesafe-mario**](https://github.com/fhshaik/typesafe-mario) | Plays Super Mario Bros. from emulator RAM as object-centric JSON | No screenshots sent to the model |
+| [**thruwire/foreman**](https://github.com/thruwire/foreman) | Independent supervisor above Codex workers: is the work complete, tested, off-track, stuck | Framed honestly as an architecture experiment |
+| [**devagrawal09/jev-review**](https://github.com/devagrawal09/jev-review) | Staged code reviewer: Noul risk matrix → file profiles → evidence selection → severity → routing | Ships a local dashboard |
+| [**awlevin/typesafe-computer-use**](https://github.com/awlevin/typesafe-computer-use) | macOS computer use via OCR + Jev action choice. A writing model only for free text | **$0.0002 per decision** vs Opus 5 at $0.032 |
+| [**DevMortimer/pi-warden**](https://github.com/DevMortimer/pi-warden) | Agent guardrails that steer instead of interrupting: rules, slop, stuck loops, done claims, irreversible calls | **6 rule breaks without it, 0 with it** across 150 paired runs |
+| [**realZachi/pg-jev**](https://github.com/realZachi/pg-jev) | Natural-language `WHERE` clauses for PostgreSQL. No index, no embeddings, no vector column | 129 rows in **≈1 s for ≈$0.0009**; re-thresholding is free |
+| [**Gaurav-Gosain/jev-sec-bench**](https://github.com/Gaurav-Gosain/jev-sec-bench) | Blind security benchmarks on public corpora: prompt injection and vulnerable code | **96.5%** injection accuracy, ECE 0.0588, 662 samples |
+| [**anessbelbati/jev-rerank-bench**](https://github.com/anessbelbati/jev-rerank-bench) | Jev vs Cohere Rerank 4 vs ZeroEntropy across 14 datasets, every raw response saved | nDCG@10 **0.692** vs Cohere 0.691 - reported as a **tie** |
+| [**RomanSlack/jev-drone**](https://github.com/RomanSlack/jev-drone) | Camera-only quadrotor. Jev is advisory at 2.5 Hz; code owns safety at 50 Hz | ~110 calls per 65 s flight |
+| [**TokenTrim/jev-agent-failure-benchmark**](https://github.com/TokenTrim/jev-agent-failure-benchmark) | Can a decision model find what broke an agent as well as a frontier LLM? | Beat GPT-5.4 on **every axis**, 6,257 traces, **$1.28 total** |
+
+No star counts here on purpose. Launch-week stars track attention, not quality - two of the most rigorous projects in this list sit at 1★ while a game demo sits at 200+. Sort by the measurement instead.
+
+**Evidence note.** Every result above is **self-reported by the project author** and none has been independently reproduced. All of these are **launch-week artifacts** built in the first 72 hours. Where a project publishes raw outputs, [showcase.md](reference/showcase.md) says so - those are the ones worth reading first.
+
+---
+
 ## Use-case catalog at a glance
 
 Each category has its own page with the decision shape, evidence, code, and pitfalls.
