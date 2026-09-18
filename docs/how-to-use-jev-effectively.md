@@ -83,6 +83,8 @@ spam_risk = (
 
 When priorities shift, you change a coefficient instead of rewriting a prompt. You can A/B it. This is the single highest-leverage habit in the whole method.
 
+**The evidence.** [zephel01/Jev-sample](https://github.com/zephel01/Jev-sample) asked one decision both ways on 120 rule-labeled Japanese scenarios: one 4-option Choice scored **48.3%**, four precondition Nouls in the same request scored **98.3%**. [AnshChoudhary/typesafe-ai-firewall](https://github.com/AnshChoudhary/typesafe-ai-firewall) found the same shape in a safety gate: one "is this dangerous?" question blocked 39.2% of legitimate hard negatives, five hazard Nouls blocked 0%. Both are self-reported by their authors and are launch-week artifacts with raw results committed.
+
 ### 5. Use structure in the questions
 
 Keep atomic questions short. When instructions or criteria need several kinds of guidance, use objects with named fields instead of flattening everything into dense prose. Contrastive criteria - say what belongs in each option *and* what belongs in a neighbor instead - measurably help.

@@ -107,6 +107,8 @@ Four things to hold onto:
 
 **Where Jev actually wins:** any decision you need to run more times than you could previously afford, and any decision that has to complete inside a request handler or a control loop.
 
+**Price the fallback, not just the call.** [YTAL](https://ytal.io/blog/typesafe-jev-entity-resolution-production-replay/) replayed production entity-resolution logs through Jev (525 new nodes, candidate Choice, 0.85 confidence threshold). The model stage cost about $0.032 against $0.787 for the existing process, roughly 96% cheaper. Sending uncertain cases back to that process pushed the projected total to $0.819, a **4.1% increase**, so they did not adopt it. They attribute this to their own aggregation rules rather than the model: the same responses gave a 13.0% holdout rate per pair and 39.6% per node. Self-reported by the company, on private data.
+
 ---
 
 ## A note on "frontier model"
