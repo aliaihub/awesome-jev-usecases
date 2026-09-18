@@ -2,7 +2,9 @@
 
 A census of public Jev projects as of **2026-09-18**. Jev launched on 15 September 2026, so everything here is at most three days old. Treat the whole list as launch-week artifacts.
 
-**Method:** GitHub API search for `tev typesafe`, `topic:jev`, `topic:typesafe-ai`, plus manual inspection of the 55 most relevant repositories. Star counts are live from the API at the time of writing.
+> **Looking for applications rather than libraries?** See [showcase.md](showcase.md) - the curated list of working apps, agents, games, and measured experiments. This page is the broad census including SDKs, CLIs, and infrastructure.
+
+**Method:** GitHub API search for `jev typesafe`, `topic:jev`, `topic:typesafe-ai`, plus manual inspection of the 55 most relevant repositories. Star counts are live from the API at the time of writing.
 
 **Caveat:** this list is deliberately broad and deliberately unvetted. Inclusion is not endorsement and is not a claim that anything works. Many of these are one-evening experiments.
 
@@ -10,8 +12,8 @@ A census of public Jev projects as of **2026-09-18**. Jev launched on 15 Septemb
 
 ## Totals
 
-- **306** repositories match "jev typesafe" on GitHub
-- **55** inspected in detail for this repo
+- **401** unique repositories found across 36 search queries (up from 306 the previous day)
+- **55** inspected in detail for the original build; **102** application candidates inspected for [showcase.md](showcase.md)
 - Dominant languages: Python (~45%), TypeScript (~40%), then Rust, Go, Elixir, PHP, Swift, C#, Dart, Java
 
 ---

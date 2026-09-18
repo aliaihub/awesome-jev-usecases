@@ -145,7 +145,7 @@ The `top_edge_within_climb_envelope` check is exactly the kind of computation th
 - [**arielweinberger/jev-autopilot**](https://github.com/arielweinberger/jev-autopilot) - autonomously flies a drone from point A to point B in a random city, avoiding obstacles.
 - [**emrickgarrett/OneVOneJev**](https://github.com/emrickgarrett/OneVOneJev) - a 1v1 quickscope arena in Three.js.
 - [**Icohen007/jev-play-ping-pong**](https://github.com/Icohen007/jev-play-ping-pong) - browser table tennis with structured telemetry and auditable evidence.
-- [**ashaazami/river-run-typesafe**](https://github.com/ashaazami/river-run-typesafe) - a River Raid–inspired shooter played by a TypeSafe pilot.
+- [**ashaazami/river-run-typesafe**](https://github.com/ashaazami/river-run-typesafe) - a River Raid-inspired shooter played by a TypeSafe pilot.
 - [**rchovatiya88/cyber-breach-jev**](https://github.com/rchovatiya88/cyber-breach-jev) and [**onionminionops-beep/pdoom-protocol**](https://github.com/onionminionops-beep/pdoom-protocol) - arena shooters.
 
 ### Home automation

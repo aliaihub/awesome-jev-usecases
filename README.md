@@ -24,6 +24,7 @@ state + typed questions -> typed answers + probabilities -> your code decides
 | Decide Jev vs LLM vs a classifier | [docs/model-selection.md](docs/model-selection.md) |
 | Verify it works on *your* data | [docs/evaluating-jev.md](docs/evaluating-jev.md) |
 | See the full use-case catalog | [usecases/README.md](usecases/README.md) |
+| Browse real applications people built | [reference/showcase.md](reference/showcase.md) |
 | Copy a runnable example | [examples/](examples/) |
 | Find ready-made questions | [reference/question-catalog.md](reference/question-catalog.md) |
 
@@ -65,7 +66,7 @@ Each category has its own page with the decision shape, evidence, code, and pitf
 | 10 | [Domain applications](usecases/10-domain-applications.md) | All | Legal, finance, insurance, health, recruiting, commerce, moderation |
 | 11 | [Frontier and fun](usecases/11-frontier-and-fun.md) | All | The demos that show what the primitive can do |
 
-Want the raw inventory of everything the community has shipped? See [reference/ecosystem.md](reference/ecosystem.md).
+Want the raw inventory of everything the community has shipped? See [reference/showcase.md](reference/showcase.md) for the application showcase, or [reference/ecosystem.md](reference/ecosystem.md) for the full census including SDKs and infrastructure.
 
 ---
 

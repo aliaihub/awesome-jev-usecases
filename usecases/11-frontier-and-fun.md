@@ -53,7 +53,7 @@ Source: [launch post](https://typesafe.ai/blog/introducing-system-one-models-and
 | [**KyleKreuter/jev2048**](https://github.com/KyleKreuter/jev2048) | Lets Jev solve 2048. |
 | [**emrickgarrett/OneVOneJev**](https://github.com/emrickgarrett/OneVOneJev) | 1v1 quickscope arena. |
 | [**AbdelStark/heist-one**](https://github.com/AbdelStark/heist-one) | Browser stealth game: Jev makes typed guard judgments, deterministic code owns the world. |
-| [**ashaazami/river-run-typesafe**](https://github.com/ashaazami/river-run-typesafe) | River Raid–inspired shooter played by a TypeSafe pilot. |
+| [**ashaazami/river-run-typesafe**](https://github.com/ashaazami/river-run-typesafe) | River Raid-inspired shooter played by a TypeSafe pilot. |
 | [**Icohen007/jev-play-ping-pong**](https://github.com/Icohen007/jev-play-ping-pong) | Browser table tennis with auditable evidence. |
 | [**rchovatiya88/cyber-breach-jev**](https://github.com/rchovatiya88/cyber-breach-jev) | Tactical cyberpunk arena combat. |
 | [**onionminionops-beep/pdoom-protocol**](https://github.com/onionminionops-beep/pdoom-protocol) | Co-op platform shooter - the name is a joke about p(doom). |
