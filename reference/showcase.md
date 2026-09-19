@@ -110,6 +110,7 @@ The largest cluster, and the one with the best evidence. Every project here puts
 | [zsoXi/agent-handoff-gate](https://github.com/zsoXi/agent-handoff-gate) | Checks the evidence behind a worker agent's PASS or BLOCKED report before it reaches the lead. Exact checks stay in code; Jev answers narrow questions about what the evidence supports | Experimental spec and offline evaluation kit (v0.1.0). No live adapter yet; reproduces historical metrics |
 | [furedea/reflex-state](https://github.com/furedea/reflex-state) | Execution state tracked outside the main LLM | Architecture |
 | [tonyzdev/PiJ](https://github.com/tonyzdev/PiJ) | Terminal agent with Jev for skill selection, code ranking, and failure triage | Architecture |
+| [valentynkit/jev-belay](https://github.com/valentynkit/jev-belay) | Claude Code Stop hook that reads the transcript for evidence since the last check; only when files changed with nothing passing since does it spend one four-question Jev call on whether "done" is unverified. Fails open on every error path | Self-reported by the author: ~$0.000017/call, reaches the question on 16.6% of stops in one 2,491-stop corpus |
 
 **See also:** [usecases/03-agent-harness-engineering.md](../usecases/03-agent-harness-engineering.md)
 
@@ -260,6 +261,8 @@ commit-miner scan . --cwe 79,89
 | [kitze/skillbox](https://github.com/kitze/skillbox) (109★) | Self-hosted versioned skill library with MCP, scoped clients, and optional Jev recommendations | Architecture |
 | [samtay32/jev-system-architect](https://github.com/samtay32/jev-system-architect) | A skill that finds fuzzy semantic judgment in a design and turns it into small Choice/Score/Noul primitives | Architecture - meta-tooling for the design method |
 | [dbreunig/building-with-jev-skill](https://github.com/dbreunig/building-with-jev-skill) (23★) | A skill for writing and improving programs that call Jev | Architecture |
+| [valentynkit/jev-commit](https://github.com/valentynkit/jev-commit) | Pre-commit hook: one Jev call judges whether the commit message matches the staged diff, plus debug leftovers and unmentioned work; warns except on a leaked credential, which it blocks | Self-reported by the author: ~$0.00001/commit |
+| [valentynkit/jev.nvim](https://github.com/valentynkit/jev.nvim) | Neovim plugin: ask the buffer a plain-language question, Treesitter splits it into functions, Jev scores each one, answers land in quickfix ranked by probability | Architecture. Demo is rendered against a test fixture, not a live measurement |
 
 ---
 
@@ -692,6 +695,7 @@ Classical CV compresses depth and segmentation into five forward range sectors, 
 | [marcelocantos/jevons](https://github.com/marcelocantos/jevons) | Personal AI assistant: a coordinator session that decides whether to answer directly or delegate to worker coding agents, with a voice-first UI and iOS wrapper. Named after the Jevons paradox | Architecture |
 | [opaielsheikh/ps2-ai-agent](https://github.com/opaielsheikh/ps2-ai-agent) | Autonomous PS2 agent with low-latency frame capture, virtual controller injection, and a broadcast-quality telemetry HUD | Architecture |
 | [lhemerly/mcts-agent](https://github.com/lhemerly/mcts-agent) | Discriminative Monte Carlo Tree Search over Jev primitives plus Gemini | Architecture |
+| [valentynkit/jev-plays-pokemon-red](https://github.com/valentynkit/jev-plays-pokemon-red) | Pokemon Red on PyBoy: code owns the route and the arithmetic, Jev picks only at branches, and every battle turn logs a faint prediction scored by Brier against what the RAM says | Architecture. Author states calibration is not yet published; the labelled sample (n=5-6 turns) is too small for a meaningful Brier score |
 
 **The recurring lesson across every project in this section:** the legal action set and the world facts are computed in code, and Jev only picks from the legal set. `sorrycc/typesafe-snake`, `4anti/jev-broadcast-lab`, and `fhshaik/typesafe-mario` all state it explicitly.
 
@@ -756,6 +760,7 @@ Covered under [Security](#security-and-adversarial-robustness). Notable for bein
 | [EdytaKucharska/ticket-quest](https://github.com/EdytaKucharska/ticket-quest) | Product | Cost of Delay triage with an LLM comparison race |
 | [tylerjharden/harden-jev-decides](https://github.com/tylerjharden/harden-jev-decides) | Product | Jev picks which stream idea becomes the live MVP |
 | [BunsDev/clarity-judge](https://github.com/BunsDev/clarity-judge) | Writing | Named writing-quality checks with per-check confidence |
+| [valentynkit/jev-skip](https://github.com/valentynkit/jev-skip) | Media/Browser | Reads the YouTube caption track and paints a per-segment sponsor probability on the seek bar before the intro ends, no crowd database. Self-reported by the author: 77% of SponsorBlock's sponsor seconds caught over 23 videos, $0.0008/video |
 
 ---
 
