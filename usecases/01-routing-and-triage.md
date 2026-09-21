@@ -180,6 +180,7 @@ That is the [cascade](../docs/patterns.md#pattern-4---the-cascade) in one senten
 
 Several projects put Jev in front of other models:
 
+- [BillionsBobby/JevRouter](https://github.com/BillionsBobby/JevRouter) routes requests across models, tools, subagents, Skills, MCP tools, and CLIs while code enforces availability, permissions, risk, and confirmation. In the author's self-reported Toolathlon benchmark, its Jev decompose + thread configuration reached **44% position-wise hits**, compared with **24% for DeepSeek V4.1 Flash**, across 10 tasks. This is a launch-week artifact, the result has not been independently reproduced, and the repository links its [method and per-task data](https://github.com/BillionsBobby/JevRouter/issues/2).
 - [nidhi-singh02/agent-router](https://github.com/nidhi-singh02/agent-router) picks Cursor, Claude Code, Codex, or OpenCode plus model/effort for a task, then launches it.
 - [0xNatoshi/jev-codex-router](https://github.com/0xNatoshi/jev-codex-router) does per-turn model and reasoning routing for Codex - picks the model, thinking depth, and speed mode for every turn.
 - [iamvatsalpatel/tiershift](https://github.com/iamvatsalpatel/tiershift) shifts every LLM call to the cheapest model that can handle it, decided by Jev in ~280 ms with no training data.
