@@ -338,6 +338,7 @@ explain (dry run, no API calls): 200 judgments, 4 requests, ~7777 tokens, ~$0.00
 | [reachjalil/jevlogs](https://github.com/reachjalil/jevlogs) | OpenTelemetry log triage: score the signal before expensive LLM analysis | Architecture |
 | [carlaiau/jev-reranking](https://github.com/carlaiau/jev-reranking) | Autonomous search-engine experimentation on the TREC WSJ collection | Architecture |
 | [Charlyhno-eng/jev-document-classification](https://github.com/Charlyhno-eng/jev-document-classification) | Document classification | Architecture |
+| [kylemclaren/jevql](https://github.com/kylemclaren/jevql) | The pg-jev idea without an extension. A psql-style client parses the query, runs the plain SQL on vanilla Postgres, sends the returned rows to Jev in Noul/Choice/Score batches, and applies `jev()` filters, sorts, and groups in the client. `--explain` shows the cost before any API call. Also ships an MCP server and Go/TypeScript/Python SDKs | Architecture. Launch-week artifact. Playground at [jevql.fly.dev](https://jevql.fly.dev/playground) |
 
 **See also:** [usecases/04-search-reranking-and-rag.md](../usecases/04-search-reranking-and-rag.md)
 
