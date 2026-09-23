@@ -761,6 +761,7 @@ Covered under [Security](#security-and-adversarial-robustness). Notable for bein
 | [tylerjharden/harden-jev-decides](https://github.com/tylerjharden/harden-jev-decides) | Product | Jev picks which stream idea becomes the live MVP |
 | [BunsDev/clarity-judge](https://github.com/BunsDev/clarity-judge) | Writing | Named writing-quality checks with per-check confidence |
 | [valentynkit/jev-skip](https://github.com/valentynkit/jev-skip) | Media/Browser | Reads the YouTube caption track and paints a per-segment sponsor probability on the seek bar before the intro ends, no crowd database. Self-reported by the author: 77% of SponsorBlock's sponsor seconds caught over 23 videos, $0.0008/video |
+| [kylemclaren/jevpdf](https://github.com/kylemclaren/jevpdf) | Documents | Ask a PDF in your own words and the matching lines light up. pdf.js extracts lines in the browser; each line gets one Noul ("does this line answer the query?"), 16 lines per request sharing the page text as state, 16 requests in flight, so highlights stream in page by page, ranked by probability (hit at 0.55). Jev only sees text, never PDF bytes; the key stays behind a small server proxy. Architecture, no measured accuracy; launch-week artifact. Demo at [jevpdf.fly.dev](https://jevpdf.fly.dev) (bring your own TypeSafe key for meaning search) |
 
 ---
 
