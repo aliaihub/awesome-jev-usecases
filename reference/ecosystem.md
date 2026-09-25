@@ -111,6 +111,9 @@ Community SDKs: [AboveColin/jevclient](https://github.com/AboveColin/jevclient) 
 ### Agent framework integrations
 [3clyp50/a0-typesafe-ai](https://github.com/3clyp50/a0-typesafe-ai) (Agent Zero) · [shantanugoel/ask-jev-skill](https://github.com/shantanugoel/ask-jev-skill) (Hermes) · [DE CRUX9812/typesafe-skill-router](https://github.com/DECRUX9812/typesafe-skill-router) (Hermes) · [Kevthetech143/super-jev](https://github.com/Kevthetech143/super-jev) · [hamakyo/jev-starter](https://github.com/hamakyo/jev-starter) · [docxology/daf-jev](https://github.com/docxology/daf-jev) · [GiesN/typesafe-jev-workflow](https://github.com/GiesN/typesafe-jev-workflow) · [BrendanH18/jev-lab](https://github.com/BrendanH18/jev-lab) · [DomMonte/n8n-nodes-typesafe-ai](https://github.com/DomMonte/n8n-nodes-typesafe-ai) (n8n)
 
+### Runnable examples and teaching resources
+[ReallyArtificial/jev-by-example](https://github.com/ReallyArtificial/jev-by-example) - ten runnable JavaScript examples of agent decisions using Choice, Score, and Noul. Includes offline fixtures, explicit application policies, and a CLI for live evaluation. Author-reported, fixture-tested only; no live Jev performance result published.
+
 ### Skills and agent guidance
 [dbreunig/building-with-jev-skill](https://github.com/dbreunig/building-with-jev-skill) - "a skill for writing and improving programs that call Jev" · [samtay32/jev-system-architect](https://github.com/samtay32/jev-system-architect) - finds fuzzy semantic judgment and turns it into primitives · official: `typesafe-ai/skills`
 
