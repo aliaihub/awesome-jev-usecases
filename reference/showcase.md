@@ -26,7 +26,7 @@ This is the "show me what people built" list. It is deliberately not a link dump
 | [Computer use](#computer-use-and-browser-agents) | jev-ultrafast, typesafe-computer-use, cua suggest_action (open PR) | otto, almond-fastloop, jev-browser (x5), AskJev, voice-browser, open-typesafe-camoufox |
 | [Trading and markets](#trading-and-markets) | jev-trader | Jev-Trades, trade-jev, jevbot, jev_stock, axiom-runtime |
 | [Real-time and games](#real-time-loops-games-and-robotics) | tsai-sc, ping-pong, little-airways, live-jev, jev-doom, dr-drone, jev-benchmark | mario, civ2, snake, jev-snake, heist-one, MAGI, + 8 more |
-| [Domain applications](#domain-applications) | synergy-screening, ticket-quest | Jeeves, CV screening, adblock, FeedGate, jevibe-check, focus-tube, HA-Jev |
+| [Domain applications](#domain-applications) | synergy-screening, ticket-quest, Jev Social | Jeeves, CV screening, adblock, FeedGate, jevibe-check, focus-tube, HA-Jev |
 | [Open reproductions](#open-reproductions-and-local-models) | openjev, Verdict, kw2828, jevlike | jevmlx, reflex, gemma, mini-jev, + 6 more |
 
 ---
@@ -739,6 +739,14 @@ Covered under [Security](#security-and-adversarial-robustness). Notable for bein
 **What it does.** Eight minimal, zero-dependency examples: CAD/CAE/CAM routing, FEM result triage, DFM screening, BOM alignment, and hallucination-proof extraction. Every example ends by "taking a decision in ordinary Python, because that is the actual argument."
 
 **The measured claim it cites** (TypeSafe's own): a 13-question briefing batched into one call is **12.2x cheaper and 10.0x faster** than asking one at a time, with no change in answers.
+
+### [socai-io/jev-social](https://github.com/socai-io/jev-social) - browser-grounded social research **[measured]**
+
+**What it does.** Jev first chooses Instagram, TikTok, or LinkedIn, then makes a new `Choice` over the exact read-only operations currently available. Search results add concrete post and profile URLs to the next choice set. Deterministic Node code rejects unknown choices, cross-platform targets, malformed confidence, and decisions below 0.35; the local [socai CLI](https://github.com/socai-io/socai) executes the accepted operation in the user's signed-in Chrome and returns the observed result to the next decision.
+
+**The measured result.** The project authors preserve [one local Instagram run](https://github.com/socai-io/jev-social/blob/v0.1.5/docs/example-report.md): two searches and one post-detail read captured four source-linked records in **63.969 s**. Only one post was inspected in detail and no individual comment text was captured. The project explicitly labels this a single observation rather than a benchmark or latency guarantee.
+
+**The pattern to lift.** Rebuild the action space from capabilities and observed targets before every decision. Jev selects from concrete operations, while code owns URL validation, confidence gates, access failures, step limits, and execution. This keeps arbitrary shell commands and DOM coordinates outside the model's action space.
 
 ### Other domain projects
 
