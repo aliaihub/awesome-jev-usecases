@@ -10,7 +10,7 @@ This page is how to verify it on your own traffic.
 
 - **No independent reproduction of the full benchmark exists.** TypeSafe designed the workflows, built the harness, and ran the eval.
 - **"Accuracy" in the vendor eval means agreement with two frontier models**, not correctness against human labels. That proxy quietly rewards agreeing with frontier-model mistakes.
-- **No calibration curves have been published.** Calibration has a precise meaning - among answers given at probability 0.8, about 80% should be true - and it is not demonstrated in the documentation.
+- **TypeSafe has not published calibration curves.** Calibration has a precise meaning - among answers given at probability 0.8, about 80% should be true - and it is not demonstrated in the documentation. Independent calibration studies have since appeared; see below.
 - **The first independent benchmark found a mixed result.** [AbdelStark/jev-benchmarks](https://github.com/AbdelStark/jev-benchmarks) compared Jev to GLiNER2.5 on zero-shot single-label classification across three datasets of 100 held-out examples each:
 
 | Dataset | Labels | Jev accuracy | GLiNER accuracy | Jev coverage at ≤5% error |
@@ -24,6 +24,7 @@ Jev had a clear accuracy and Brier-score advantage on AG News and Banking77. On 
 That is the right shape of result. Jev is not uniformly calibrated, and the failure is on the domain where the categories are subjective and emotion-like. Your domain may resemble any of those three.
 
 - **The one independent measurement in the launch window was positive but small.** Every's Mike Taylor made 777 judgments across 37 documents in under 0.7 seconds and 1,709 judgments for under a cent, and on a 7-defect test Jev caught 6 where Fable 5.1 caught 7. One person's afternoon is not a benchmark, but it matches the vendor's latency and price and shows the expected accuracy gap ([every.to](https://every.to/also-true-for-humans/mini-vibe-check-typesafe-s-jev-judged-everything-i-ve-written-in-0-7-seconds)).
+- **Independent calibration studies have since reported mixed results.** A preregistered test on ChaosNLI (100 human labels per item, `jev-1.13.0`) found `Choice` probabilities close to calibrated where annotators agree but overconfident where they split: mean confidence 0.807 against 0.468 annotator agreement, a bias-corrected ECE gap of 0.264, while confidence still ranked the contested items (AUROC 0.744). Independently measured and preregistered ([paper](https://doi.org/10.5281/zenodo.22971491), [code](https://github.com/GautamTalksDev/jevbench)). [AnthusAI/Jev-Calibration](https://github.com/AnthusAI/Jev-Calibration) found raw probabilities overconfident on 8,801 labeled sentiment examples (ECE 0.117) and brought ECE to 0.008 with isotonic regression. [scienthoon/jev-ood-calibration](https://github.com/scienthoon/jev-ood-calibration) measured ECE 0.107 against a 0.024 noise floor on a rule-based task Jev cannot have seen.
 
 ---
 
