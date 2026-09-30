@@ -222,6 +222,15 @@ The cost figure is the point: **$0.00004 and 0.3 seconds is cheap enough to fire
 
 [StrateGeee](https://x.com/StrateGeee/status/2100247334961426434) framed this as the whole product: "workflow state → typed decisions → deterministic policy gates, escalating uncertain cases to frontier models or humans."
 
+### LLM-as-judge evaluation with an audit trail
+
+[patchy631/jev-as-judge](https://github.com/patchy631/jev-as-judge) is a launch-week architecture tutorial for judging refund-support traces. It runs deterministic checks first, then asks three atomic Nouls about grounding, request coverage, and action honesty plus one ordered helpfulness Score in a single Jev request. Raw answers, the resolved model identifier, and the rubric version are retained, and a custom Comet Opik metric records each result separately.
+
+The evidence boundary matters: the repository has an offline demo, mocked transport tests, and real-SDK adapter tests, but the author explicitly says authenticated Jev calls and actual Opik uploads were not run. Its hand-authored demo probabilities test plumbing, not model quality, and its thresholds are illustrative and uncalibrated. Copy the audit structure, not the numbers.
+
+**The pattern to lift:** deterministic failures should bypass semantic evaluation; API failures should become `judge_error` and route to review; synthetic expected verdicts should not be presented as human labels.
+
+
 ---
 
 ## Design notes specific to guardrails
