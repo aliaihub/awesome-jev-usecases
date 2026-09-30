@@ -22,7 +22,7 @@ This is the "show me what people built" list. It is deliberately not a link dump
 | [Security](#security-and-adversarial-robustness) | jev-sec-bench, typesafe-ai-firewall, kiarina safety lab | Jev-Moderation-Bot, Jeeves |
 | [Code and developer tools](#code-and-developer-tools) | jev-review (Niaz), commit-miner, JevLint | jev-review (deva), blink, DiffJury, migration-guard |
 | [Search and retrieval](#search-and-retrieval) | jevgrep, jev-rerank-bench, pg-jev, JevSQL | jev-search, jev-reranking, jevlogs, jev-tree |
-| [Classification and evaluation](#classification-and-evaluation) | calibre, padflow, synergy-screening, agent-failure-bench, jev-benchmarks, tiab-review-plugin, Jev-sample | kyotsu-ai-bench, document-classification, CV screening, nola triage |
+| [Classification and evaluation](#classification-and-evaluation) | calibre, padflow, synergy-screening, agent-failure-bench, jev-benchmarks, tiab-review-plugin, Jev-sample | jev-as-judge, kyotsu-ai-bench, document-classification, CV screening, nola triage |
 | [Computer use](#computer-use-and-browser-agents) | jev-ultrafast, typesafe-computer-use, cua suggest_action (open PR) | otto, almond-fastloop, jev-browser (x5), AskJev, voice-browser, open-typesafe-camoufox |
 | [Trading and markets](#trading-and-markets) | jev-trader | Jev-Trades, trade-jev, jevbot, jev_stock, axiom-runtime |
 | [Real-time and games](#real-time-loops-games-and-robotics) | tsai-sc, ping-pong, little-airways, live-jev, jev-doom, dr-drone, jev-benchmark | mario, civ2, snake, jev-snake, heist-one, MAGI, + 8 more |
@@ -462,6 +462,7 @@ The adoption rule is recall of at least 95% at threshold 0.3. For comparison, th
 
 | Project | What it does | Status |
 | --- | --- | --- |
+| [patchy631/jev-as-judge](https://github.com/patchy631/jev-as-judge) | Auditable evaluation pipeline for refund-support traces: deterministic checks first, then three Noul criteria plus a helpfulness Score in one Jev call, with raw answers and rubric version recorded through Comet Opik | Architecture tutorial and launch-week artifact. Offline fixtures and mocked adapter tests only; the author explicitly says authenticated Jev calls and actual Opik uploads were not run. Hand-authored demo probabilities are not model results |
 | [shibadogcap/kyotsu-ai-bench](https://github.com/shibadogcap/kyotsu-ai-bench) | Japan's 2026 Common Test: Jev vs luna-none vs luna-low | Static dashboard |
 | [gtaras7/typesafe-jev](https://github.com/gtaras7/typesafe-jev) | CV screening with an editable role policy. Re-scoring every stored candidate takes ~20 ms and costs nothing because judgments are kept separate from the arithmetic | Architecture. Openly documents **the two bugs its own test data caught** - rare and valuable |
 | [EdytaKucharska/ticket-quest](https://github.com/EdytaKucharska/ticket-quest) | Ticket triage by Cost of Delay, with a bring-your-own-key LLM race for direct comparison | Live demo in fixture mode. Six narrow questions in one call |
